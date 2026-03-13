@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watermelon Calculator</title>
+    <link rel="stylesheet" href="css.css">
+    <style>
+        body {
+            background-color: #fce4ec;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            color: #e91e63;
+            text-align: center;
+            padding: 30px;
+            position: relative;
+        }
+
+        h2 {
+            color: #9c27b0;
+            font-size: 2.5em;
+        }
+
+        input, select, button {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            border: 2px solid #f48fb1;
+            font-size: 1.1em;
+        }
+
+        button {
+            background-color: #f8bbd0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff80ab;
+        }
+
+        #result {
+            font-size: 1.5em;
+            color: #ff4081;
+        }
+
+        #loading {
+            display: none;
+            font-size: 1.2em;
+            color: #ff4081;
+            animation: pulse 1s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(1.1);
+            }
+        }
+
+        .heart-icon {
+            font-size: 1.5em;
+            color: #ff80ab;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        select option:checked {
+            background-color: #ff80ab;
+            color: white;
+        }
+
+        #donation-button {
+            background-color: #ff4081;
+            color: white;
+            font-size: 1.2em;
+            border: none;
+            padding: 12px 20px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #donation-button:hover {
+            background-color: #e91e63;
+        }
+    </style>
+    <script>
+        function calculate() {
+            var num1 = document.getElementById('num1').value;
+            var num2 = document.getElementById('num2').value;
+            var operation = document.getElementById('operation').value;
+            var result;
+
+            // Validate input
+            if (num1 === "" || num2 === "") {
+                document.getElementById('result').innerText = "Invalid input: Please enter both numbers!";
+                document.getElementById('loading').style.display = "none";
+                return;
+            }
+
+            num1 = parseFloat(num1);
+            num2 = parseFloat(num2);
+
+            // Check for division by zero
+            if (operation === "/" && num2 === 0) {
+                document.getElementById('result').innerText = 
+                    "omgggggggg iam stupid but this is on a whole another level";
+                document.getElementById('loading').style.display = "none";
+                return;
+            }
+
+            // Show loading message
+            document.getElementById('loading').style.display = "block";
+            document.getElementById('result').innerText = "";
+
+            // Array of funny responses
+            var funnyResponses = [
+                "Oops! Looks like I'm just a calculator, not a magician! ✨",
+                "Well, I tried my best, but I'm still just a calculator. 😅",
+                "I did the math... or did I? 🤔",
+                "Sorry, I can only do numbers. Feel free to ask Google for more fun! 😂",
+                "I don't know about love, but I can definitely add! 💖",
+                "I’ll calculate your happiness... Oh wait, that’s not a number. 😜",
+                "It's not a bug, it’s a feature! 🐞",
+                "I’m a calculator, not a fortune teller, but here’s your result anyway! 🔮"   
+            ];
+
+            // Set a 10-second delay before showing a random funny response
+            setTimeout(function() {
+                // Randomly choose a funny response
+                result = funnyResponses[Math.floor(Math.random() * funnyResponses.length)];
+                document.getElementById('result').innerText = "Result: " + result;
+                document.getElementById('loading').style.display = "none";
+            }, 10000);  // 10 seconds delay
+        }
+
+        function redirectToDonationPage() {
+            // Redirect to your donation link
+            window.location.href = "https://support.anera.org/a/ceasefire-aid?_gl=1*5ocwa0*_gcl_au*MTM4MTExNDczOC4xNzM3ODM5NDA2*_ga*MTA3MDgzNjU0OS4xNzM3ODM5NDA2*_ga_9D82NNM9FJ*MTczNzgzOTQwNi4xLjAuMTczNzgzOTQwNi42MC4wLjA.";  
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <button id="donation-button" onclick="redirectToDonationPage()">Donate to Gaza ❤️</button>
+        <h2>💖 Watermelon Calculator 💖</h2>
+        <label for="num1">Enter the first number:</label>
+        <input type="number" id="num1"><br><br>
+
+        <label for="operation">Choose the desired operation:</label>
+        <select id="operation">
+            <option value="+" selected>+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select><br><br>
+
+        <label for="num2">Enter the second number:</label>
+        <input type="number" id="num2"><br><br>
+
+        <button onclick="calculate()">Calculate</button>
+
+        <p id="loading">Please wait, calculating...</p>
+        <p id="result"></p>
+        <p class="heart-icon">❤️ Thank you for using my calculator! ❤️</p>
+    </div> 
+    <script src="script.js"></script>
+</body>
+</html>
